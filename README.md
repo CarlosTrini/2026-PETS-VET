@@ -1,43 +1,28 @@
-# Astro Starter Kit: Minimal
+# Pets Vet
 
-```sh
-npm create astro@latest -- --template minimal
-```
+LandingPage para veterinaria
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![alt text](/public/images/portada.png)
 
-## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+## Sitio desplegado en netlify
+> https://petsvet.netlify.app/
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## ¿Qué se uso durante su desarrollo?
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Astro
+- TailwindCSS
+- lucide-astro
+- Typescript
+- react-hook-form
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Any static assets, like images, can be placed in the `public/` directory.
 
-## 🧞 Commands
+## ¿Qué páginas contiene?
 
-All commands are run from the root of the project, from a terminal:
+- Página de index ( https://petsvet.netlify.app/ )
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## INICIO
+![alt text](/public/images/index-page.png)
