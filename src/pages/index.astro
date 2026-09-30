@@ -1,0 +1,56 @@
+---
+// index.astro — PetsVet Landing Page (Plan Launch)
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import Services from '../components/sections/Services.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import Team from '../components/sections/Team.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import Shop from '../components/sections/Shop.astro';
+import CTA from '../components/sections/CTA.astro';
+import Contact from '../components/sections/Contact.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Footer from '../components/layout/Footer.astro';
+import ScrollToTop from '../components/react/ScrollToTop';
+---
+
+<BaseLayout>
+  <!-- Sticky Header Navigation -->
+  <Header />
+
+  <main>
+    <!-- 1. Hero Section -->
+    <Hero />
+
+    <!-- 2. Services Section -->
+    <Services />
+
+    <!-- 3. Benefits Section ("Por qué elegirnos") -->
+    <Benefits />
+
+    <!-- 4. Team / Nosotros Section -->
+    <Team />
+
+    <!-- 5. Testimonials / Reviews Section -->
+    <Testimonials />
+
+    <!-- 6. Shop Preview Section -->
+    <Shop />
+
+    <!-- 7. Mid-page CTA Banner -->
+    <CTA />
+
+    <!-- 8. Contact & Map Section -->
+    <Contact />
+
+    <!-- 9. Frequently Asked Questions -->
+    <FAQ />
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Interactive React Islands -->
+  <ScrollToTop client:load />
+</BaseLayout>

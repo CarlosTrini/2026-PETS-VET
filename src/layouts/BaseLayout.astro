@@ -1,0 +1,109 @@
+---
+// BaseLayout.astro — Plantilla WaaS Plan Launch
+// Configura SEO, OG tags, Schema JSON-LD y fuentes
+
+import { clinicInfo } from '../data/clinic';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+}
+
+const {
+  title = `${clinicInfo.name} — Veterinaria en Texcoco, Edo. Méx.`,
+  description = clinicInfo.description,
+  image = '/images/hero-dog.jpg',
+  canonical = Astro.url.href,
+} = Astro.props;
+
+const fullTitle = title.includes(clinicInfo.name) ? title : `${title} | ${clinicInfo.name}`;
+
+// Schema JSON-LD — LocalBusiness + VeterinaryCare
+const schemaOrg = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'AnimalShelter'],
+  '@id': 'https://petsvet.com.mx',
+  name: clinicInfo.name,
+  description: clinicInfo.description,
+  url: 'https://petsvet.com.mx',
+  telephone: clinicInfo.phone,
+  image: `https://petsvet.com.mx${image}`,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Blvd. Nezahualcóyotl 412, Col. San Sebastián',
+    addressLocality: 'Texcoco de Mora',
+    addressRegion: 'Estado de México',
+    postalCode: '56100',
+    addressCountry: 'MX',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 19.5165,
+    longitude: -98.8821,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+      opens: '10:00',
+      closes: '19:00',
+    },
+  ],
+  sameAs: [
+    clinicInfo.social.instagram,
+    clinicInfo.social.facebook,
+    clinicInfo.social.tiktok,
+  ],
+};
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Primary -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://petsvet.com.mx${image}`} />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content={clinicInfo.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`https://petsvet.com.mx${image}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

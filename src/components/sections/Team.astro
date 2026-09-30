@@ -1,0 +1,96 @@
+---
+// Team.astro — Sección Nosotros
+import { team } from '../../data/team';
+---
+
+<section
+  id="nosotros"
+  aria-labelledby="team-heading"
+  class="py-24 bg-surface"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="section-chip" aria-hidden="true">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        Nuestro equipo
+      </div>
+      <h2 id="team-heading" class="font-display font-extrabold text-4xl sm:text-5xl text-text mt-2 mb-4">
+        Conoce a quienes cuidan<br class="hidden sm:block"/> a tu mejor amigo
+      </h2>
+      <p class="text-text-muted text-lg max-w-2xl mx-auto">
+        Somos un equipo joven, apasionado y en constante actualización. Nuestros dueños fundadores y todo el equipo compartimos el mismo amor por los animales.
+      </p>
+    </div>
+
+    <!-- Team cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {team.map(member => (
+        <article
+          class={`group bg-white rounded-3xl overflow-hidden border border-slate-100 card-hover text-center
+            ${member.isOwner ? 'ring-2 ring-primary/20' : ''}
+          `}
+          aria-label={`Perfil de ${member.name}`}
+        >
+          <!-- Image -->
+          <div class="relative overflow-hidden aspect-4/3">
+            <img
+              src={member.image}
+              alt={member.imageAlt}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              width="400"
+              height="300"
+              loading="lazy"
+            />
+            {member.isOwner && (
+              <div class="absolute top-3 right-3 bg-accent text-secondary text-xs font-bold px-3 py-1 rounded-full">
+                Co-fundador/a
+              </div>
+            )}
+          </div>
+
+          <!-- Info -->
+          <div class="p-6">
+            <h3 class="font-display font-bold text-xl text-text mb-1">{member.name}</h3>
+            <p class="text-primary font-semibold text-sm mb-2">{member.role}</p>
+            <p class="text-text-muted text-sm">{member.specialty}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Story section -->
+    <div class="mt-16 bg-linear-to-br from-secondary to-secondary/80 rounded-4xl p-8 sm:p-12 text-surface text-center relative overflow-hidden">
+      <!-- Decorative -->
+      <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-primary/10 blur-3xl -translate-y-1/2 translate-x-1/4" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-accent/10 blur-3xl translate-y-1/3 -translate-x-1/4" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-2xl mx-auto">
+        <div class="text-4xl mb-4" aria-hidden="true">🐾</div>
+        <h3 class="font-display font-bold text-2xl sm:text-3xl mb-4">
+          Nuestra historia
+        </h3>
+        <p class="text-surface/80 text-base sm:text-lg leading-relaxed mb-6">
+          PetsVet nació del sueño de dos veterinarios jóvenes: el Dr. Alejandro y la Dra. Valeria, quienes después de varios años de experiencia clínica decidieron abrir su propio espacio en Texcoco, cerca del Rodeo. Hoy, junto con un equipo de 5 veterinarias talentosas, atienden con amor y profesionalismo a cientos de mascotas de la región.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-surface/60">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            Fundada en Texcoco
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            7 especialistas apasionados
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            +200 reseñas ⭐ 5.0
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

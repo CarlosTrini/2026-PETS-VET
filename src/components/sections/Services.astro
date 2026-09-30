@@ -1,0 +1,100 @@
+---
+// Services.astro
+import { services } from '../../data/services';
+
+// Icon SVG map (inline for zero JS, accessible)
+const icons: Record<string, string> = {
+  stethoscope: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>`,
+  syringe: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>`,
+  scissors: `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>`,
+  'heart-pulse': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l1.5-3 2 4.5 1.5-3 1.5 3h6.28"/></svg>`,
+  'shopping-bag': `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>`,
+};
+---
+
+<section
+  id="servicios"
+  aria-labelledby="services-heading"
+  class="py-24 bg-surface"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="section-chip" aria-hidden="true">
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        Nuestros servicios
+      </div>
+      <h2 id="services-heading" class="italic font-display font-extrabold text-4xl sm:text-5xl text-text mt-2 mb-4">
+        Todo lo que tu mascota necesita
+      </h2>
+      <p class="text-text-muted text-lg max-w-2xl mx-auto">
+        Desde consultas preventivas hasta cirugías especializadas. Nuestro equipo de veterinarios jóvenes y apasionados cuida a tus mascotas con amor y profesionalismo.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {services.map((service, index) => (
+        <article
+          class={`group bg-white rounded-3xl p-6 border border-slate-100 card-hover cursor-default
+            ${index === 2 ? 'lg:col-span-1' : ''}
+          `}
+          aria-label={`Servicio: ${service.title}`}
+        >
+          <!-- Service image -->
+          <div class="relative w-full aspect-4/3 rounded-2xl overflow-hidden mb-5">
+            <img
+              src={service.image}
+              alt={service.imageAlt}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              width="400"
+              height="300"
+              loading="lazy"
+            />
+            <!-- Icon overlay -->
+            <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-primary shadow-sm">
+              <Fragment set:html={icons[service.icon] ?? icons.stethoscope} />
+            </div>
+          </div>
+
+          <h3 class="font-display font-bold text-xl text-text mb-2 group-hover:text-primary transition-colors">
+            {service.title}
+          </h3>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            {service.description}
+          </p>
+
+          <!-- Features list -->
+          <ul class="space-y-1.5" aria-label={`Características de ${service.title}`}>
+            {service.features.map(feature => (
+              <li class="flex items-center gap-2 text-xs text-text-muted">
+                <span class="w-4 h-4 rounded-full bg-primary-light text-primary flex items-center justify-center shrink-0" aria-hidden="true">
+                  <svg class="w-2.5 h-2.5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-12">
+      <a
+        href="#contacto"
+        id="services-cta"
+        class="inline-flex items-center gap-2.5 bg-secondary text-surface font-semibold px-8 py-4 rounded-2xl hover:bg-secondary/90 transition-all duration-200 shadow-sm hover:shadow-lg"
+        aria-label="Ir a la sección de contacto"
+      >
+        ¿Listo para agendar?
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

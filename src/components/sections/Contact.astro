@@ -1,0 +1,239 @@
+---
+// Contact.astro — Formulario de contacto + mapa + info
+import ContactForm from "../react/ContactForm";
+import { clinicInfo } from "../../data/clinic";
+---
+
+<section id="contacto" aria-labelledby="contact-heading" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="section-chip" aria-hidden="true">
+        <svg
+          class="w-3.5 h-3.5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+          ></path>
+        </svg>
+        Contáctanos
+      </div>
+      <h2
+        id="contact-heading"
+        class="font-display font-extrabold text-4xl sm:text-5xl text-text mt-2 mb-4"
+      >
+        ¿Cómo podemos ayudarte hoy?
+      </h2>
+      <p class="text-text-muted text-lg max-w-xl mx-auto">
+        Escríbenos y uno de nuestros veterinarios te responderá a la brevedad.
+        También puedes visitarnos directamente.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12">
+      <!-- Left — Form -->
+      <div class="bg-surface rounded-3xl p-6 sm:p-8 border border-slate-100">
+        <h3
+          class="font-display font-bold text-xl text-text mb-6 flex items-center gap-2.5"
+        >
+          <span
+            class="w-8 h-8 rounded-lg bg-primary-light text-primary flex items-center justify-center"
+            aria-hidden="true"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              ></path>
+            </svg>
+          </span>
+          Envíanos un mensaje
+        </h3>
+        <ContactForm client:load />
+      </div>
+
+      <!-- Right — Info + Map -->
+      <div class="space-y-6">
+        <!-- Contact info cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Phone -->
+          <a
+            href={`tel:${clinicInfo.phone.replace(/\s/g, "")}`}
+            class="bg-surface rounded-2xl p-5 border border-slate-100 hover:border-primary/50 transition-colors group"
+            aria-label={`Llamar al ${clinicInfo.phone}`}
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"
+              aria-hidden="true"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                ></path>
+              </svg>
+            </div>
+            <p
+              class="text-xs text-text-muted font-medium uppercase tracking-wide mb-1"
+            >
+              Teléfono
+            </p>
+            <p class="font-semibold text-text text-sm">{clinicInfo.phone}</p>
+          </a>
+
+          <!-- WhatsApp -->
+          <a
+            href={clinicInfo.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-[#f0fdf4] rounded-2xl p-5 border border-[#bbf7d0] hover:border-whatsapp-dark transition-colors group"
+            aria-label="Contactar por WhatsApp"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-[#dcfce7] text-whatsapp flex items-center justify-center mb-3 group-hover:scale-110 transition-transform"
+              aria-hidden="true"
+            >
+              <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                ></path>
+              </svg>
+            </div>
+            <p
+              class="text-xs text-text-muted font-medium uppercase tracking-wide mb-1"
+            >
+              WhatsApp
+            </p>
+            <p class="font-semibold text-whatsapp text-sm">Asesoría gratuita</p>
+          </a>
+
+          <!-- Schedule -->
+          <div class="bg-surface rounded-2xl p-5 border border-slate-100">
+            <div
+              class="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center mb-3"
+              aria-hidden="true"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <p
+              class="text-xs text-text-muted font-medium uppercase tracking-wide mb-1"
+            >
+              Horario
+            </p>
+            <p class="font-semibold text-text text-sm">
+              {clinicInfo.schedule.days}
+            </p>
+            <p class="text-sm text-text-muted">{clinicInfo.schedule.hours}</p>
+          </div>
+
+          <!-- Address -->
+          <div class="bg-surface rounded-2xl p-5 border border-slate-100">
+            <div
+              class="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center mb-3"
+              aria-hidden="true"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <p
+              class="text-xs text-text-muted font-medium uppercase tracking-wide mb-1"
+            >
+              Ubicación
+            </p>
+            <p class="font-semibold text-text text-sm leading-snug">
+              Cerca del Rodeo Texcoco
+            </p>
+            <p class="text-xs text-text-muted">{clinicInfo.city}</p>
+          </div>
+        </div>
+
+        <!-- Embedded Map -->
+        <div
+          class="rounded-3xl overflow-hidden border border-slate-200 aspect-video shadow-sm"
+        >
+          <iframe
+            title="Ubicación de PetsVet Clínica Veterinaria en Texcoco, Estado de México"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30100!2d-98.8821!3d19.5165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f89ca7ecbc05%3A0x7a7fde8c3e3a4af4!2sTexcoco+de+Mora%2C+M%C3%A9x.!5e0!3m2!1ses!2smx!4v1000000000000"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- Google Maps button -->
+        <a
+          href="https://maps.google.com/?q=Texcoco+de+Mora,+Estado+de+México"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="contact-maps-btn"
+          class="flex items-center justify-center gap-2.5 border-2 border-slate-200 text-text font-semibold py-3 px-6 rounded-2xl hover:border-primary hover:text-primary transition-all duration-200 text-sm"
+          aria-label="Abrir ubicación en Google Maps"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+            ></path>
+          </svg>
+          Cómo llegar · Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

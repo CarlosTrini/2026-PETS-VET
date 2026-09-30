@@ -1,0 +1,243 @@
+---
+// Hero.astro — Primera sección de la landing
+import { clinicInfo } from "../../data/clinic";
+---
+
+<section
+  id="inicio"
+  aria-label="Bienvenida a PetsVet"
+  class="relative min-h-screen flex items-center pt-20 overflow-hidden hero-blob"
+>
+  <!-- Background decorative  -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div
+      class="absolute top-20 right-0 w-150 h-150 rounded-full bg-linear-to-bl from-primary/10 to-transparent -translate-y-1/4 translate-x-1/4"
+    >
+    </div>
+    <div
+      class="absolute bottom-0 left-0 w-150 h-150 rounded-full bg-linear-to-tr from-accent/8 to-transparent translate-y-1/4 -translate-x-1/4"
+    >
+    </div>
+    <!-- Paw decoration -->
+    <svg
+      class="absolute top-32 left-8 w-16 h-16 text-primary/8 animate-float"
+      style="animation-delay: 0s"
+      viewBox="0 0 100 100"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <ellipse cx="30" cy="20" rx="12" ry="16"></ellipse>
+      <ellipse cx="70" cy="20" rx="12" ry="16"></ellipse>
+      <ellipse cx="15" cy="50" rx="10" ry="14"></ellipse>
+      <ellipse cx="85" cy="50" rx="10" ry="14"></ellipse>
+      <ellipse cx="50" cy="70" rx="22" ry="28"></ellipse>
+    </svg>
+    <svg
+      class="absolute bottom-24 right-12 w-10 h-10 text-accent/20 animate-float"
+      style="animation-delay: 1.5s"
+      viewBox="0 0 100 100"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <ellipse cx="30" cy="20" rx="12" ry="16"></ellipse>
+      <ellipse cx="70" cy="20" rx="12" ry="16"></ellipse>
+      <ellipse cx="15" cy="50" rx="10" ry="14"></ellipse>
+      <ellipse cx="85" cy="50" rx="10" ry="14"></ellipse>
+      <ellipse cx="50" cy="70" rx="22" ry="28"></ellipse>
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center py-16 lg:py-0">
+      <!-- Left Content -->
+      <div class="text-center lg:text-left">
+        <!-- Chip -->
+        <div
+          class="inline-flex items-center gap-2 bg-accent/50 text-secondary px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider mb-6"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-surface inline-block animate-pulse"
+          ></span>
+          Atendemos Lun–Dom · 10am – 7pm
+        </div>
+
+        <h1
+          class="font-display font-extrabold text-4xl sm:text-5xl xl:text-6xl leading-[1.1] text-text mb-6"
+        >
+          Tu mascota merece<br />
+          la mejor<br />
+          <span class="gradient-text">atención veterinaria</span>
+        </h1>
+
+        <p
+          class="text-lg text-text-muted leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8"
+        >
+          En <strong class="text-secondary">PetsVet Texcoco</strong> contamos con
+          un equipo de veterinarios jóvenes, apasionados y con excelentes reseñas.
+          Consultas, cirugías, vacunas, seguimiento y tienda — todo en un solo lugar.
+        </p>
+
+        <!-- Stats row -->
+        <div
+          class="flex items-center justify-center lg:justify-start gap-6 mb-10"
+        >
+          <div class="text-center">
+            <p class="font-display font-bold text-2xl text-primary">7</p>
+            <p class="text-xs text-text-muted font-medium">Días a la semana</p>
+          </div>
+          <div class="w-px h-10 bg-slate-200"></div>
+          <div class="text-center">
+            <p class="font-display font-bold text-2xl text-primary">7+</p>
+            <p class="text-xs text-text-muted font-medium">Especialistas</p>
+          </div>
+          <div class="w-px h-10 bg-slate-200"></div>
+          <div class="flex flex-col items-center">
+            <div class="flex text-accent" aria-label="5 estrellas">
+              <span aria-hidden="true">★★★★★</span>
+            </div>
+            <p class="text-xs text-text-muted font-medium">+200 reseñas</p>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+        >
+          <a
+            href="#contacto"
+            id="hero-cta-agenda"
+            class="inline-flex items-center justify-center gap-2.5 bg-primary text-surface font-semibold px-7 py-4 rounded-2xl hover:bg-primary-dark transition-all duration-200 shadow-md hover:shadow-xl hover:-translate-y-0.5 text-base"
+            aria-label="Agendar consulta veterinaria"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+            Agendar consulta
+          </a>
+
+          <a
+            href={clinicInfo.whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            id="hero-cta-whatsapp"
+            class="inline-flex items-center justify-center gap-2.5 bg-surface text-text-muted border-2 border-whatsapp font-semibold px-7 py-4 rounded-2xl hover:bg-whatsapp hover:text-surface transition-all duration-200 shadow-sm hover:shadow-md text-base"
+            aria-label="Contactar por WhatsApp"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="w-5 h-5 fill-current"
+              aria-hidden="true"
+            >
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+              ></path>
+            </svg>
+            Asesoría gratis por WA
+          </a>
+        </div>
+      </div>
+
+      <!-- Right — Image -->
+      <div class="relative flex justify-center lg:justify-end">
+        <!-- Main image container -->
+        <div class="relative w-full max-w-lg">
+          <!-- Decorative blob behind image -->
+          <div
+            class="absolute inset-4 bg-linear-to-br from-primary/20 to-accent/10 rounded-[40px] blur-2xl"
+            aria-hidden="true"
+          >
+          </div>
+
+          <div
+            class="relative rounded-4xl overflow-hidden shadow-2xl shadow-primary border-4 border-surface aspect-4/3"
+          >
+            <img
+              src="/images/hero-dog.jpg"
+              alt="Veterinaria de PetsVet atendiendo a un golden retriever en nuestra clínica de Texcoco"
+              class="w-full h-full object-cover"
+              width="640"
+              height="480"
+              fetchpriority="high"
+              loading="eager"
+            />
+          </div>
+
+          <!-- Floating badge — location -->
+          <div
+            class="absolute -bottom-5 -left-4 sm:left-4 bg-surface rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 border border-slate-100"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-primary-light flex items-center justify-center shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm text-text leading-tight">
+                Texcoco
+              </p>
+              <p class="text-xs text-text-muted">Estado de México</p>
+            </div>
+          </div>
+
+          <!-- Floating badge — rating -->
+          <div
+            class="absolute -top-4 -right-2 sm:right-4 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2.5 border border-slate-100"
+          >
+            <div
+              class="w-9 h-9 rounded-xl bg-[#FEF3C7] flex items-center justify-center text-lg"
+              aria-hidden="true"
+            >
+              ⭐
+            </div>
+            <div>
+              <p class="font-bold text-base text-text leading-tight">5.0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted"
+    aria-hidden="true"
+  >
+    <span class="text-xs font-medium uppercase tracking-wider">Explorar</span>
+    <div
+      class="w-5 h-8 rounded-full border-2 border-current flex items-start justify-center pt-1"
+    >
+      <div class="w-1 h-2 rounded-full bg-current animate-bounce"></div>
+    </div>
+  </div>
+</section>
